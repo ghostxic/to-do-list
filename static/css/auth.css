@@ -1,0 +1,71 @@
+*{
+    box-sizing:border-box;
+}
+
+#welcome{
+    padding-top:15vh;
+}
+#welcome h1{
+    color:white;
+    text-align:center;
+    padding-bottom:5vh;
+}
+#welcome #shinx{
+    display:flex;
+    justify-content:center;
+    margin: 0 auto;
+    padding-bottom:3vh;
+    width:15vw;
+}
+
+#login_forms{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap: 20px;
+}
+
+#login_forms input{
+    padding-left:20px;
+    width:27.5vw;
+    height:5vh;
+    border:1px;
+    border-radius:15px;
+}
+
+#login{
+    padding-left:0px;
+    text-align:center;
+    width:25vw;
+    height:5vh;
+    border-radius:15px;
+    background-color:black;
+    color:white;
+
+}
+
+#login:hover{
+    cursor:pointer;
+}
+
+
+#register_text{
+    text-align:center;
+    color:white;
+    text-shadow: 1px;
+}
+#register_link{
+    text-decoration: none;
+    color:yellow;
+}
+
+body{
+    overflow:hidden;
+    height:100%;
+    width:100%;
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:cover;
+    background-attachment: fixed;
+}

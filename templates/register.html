@@ -1,11 +1,24 @@
-{% extends "auth-base.html" %}
-{% block title %}Register Page{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="static/css/auth.css">
+</head>
+<body style="background-image: url(static/images/background.jpg)">
+    <div id="welcome">
+        <h1>Welcome to Shinxity!</h1>
+        <img src="static/images/shinx.png" id="shinx" alt="shinx">
+    </div>
 
-{% block content %}
-<form action="#" method="post">
-    <p><input type="text" name="name" placeholder="Full name" required></p>
-    <p><input type="text" name="username" placeholder="Username" required></p>
-    <p><input type="password" name="password" placeholder="Password" required></p>
-    <p><input type="submit" value = "Register"></p>
-</form>
-{% endblock %}
+    <form id="login_forms" action="#" method="post">
+        <input type="text" name="name" placeholder="Full name" required>
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="submit" id="login" value = "Login">
+    </form>
+
+    <h2 id ="register_text">Have an account? <a id= "register_link" href="/login">Login</a></h2>
+</body>
+</html>
