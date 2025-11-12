@@ -1,71 +1,268 @@
-*{
-    box-sizing:border-box;
+/* ==================== CSS RESET ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-#welcome{
-    padding-top:15vh;
-}
-#welcome h1{
-    color:white;
-    text-align:center;
-    padding-bottom:5vh;
-}
-#welcome #shinx{
-    display:flex;
-    justify-content:center;
-    margin: 0 auto;
-    padding-bottom:3vh;
-    width:15vw;
+/* ==================== ROOT VARIABLES ==================== */
+:root {
+    --primary-color: #000000;
+    --secondary-color: #ffeb3b;
+    --text-light: #ffffff;
+    --bg-overlay: rgba(0, 0, 0, 0.3);
+    --input-width: 400px;
+    --border-radius: 15px;
+    --spacing-sm: 10px;
+    --spacing-md: 20px;
+    --spacing-lg: 50px;
+    --transition-speed: 0.3s;
 }
 
-#login_forms{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    gap: 20px;
-}
-
-#login_forms input{
-    padding-left:20px;
-    width:27.5vw;
-    height:5vh;
-    border:1px;
-    border-radius:15px;
-}
-
-#login{
-    padding-left:0px;
-    text-align:center;
-    width:25vw;
-    height:5vh;
-    border-radius:15px;
-    background-color:black;
-    color:white;
-
-}
-
-#login:hover{
-    cursor:pointer;
-}
-
-
-#register_text{
-    text-align:center;
-    color:white;
-    text-shadow: 1px;
-}
-#register_link{
-    text-decoration: none;
-    color:yellow;
-}
-
-body{
+/* ==================== BODY & LAYOUT ==================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
     overflow:hidden;
-    height:100%;
-    width:100%;
-    background-repeat:no-repeat;
-    background-position:center;
-    background-size:cover;
+    margin: 0;
+}
+
+.auth-page {
+    background-image: url('../images/background.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: var(--spacing-md);
+}
+
+/* ==================== HEADER ==================== */
+.welcome-header {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    animation: fadeInDown 0.6s ease-out;
+}
+
+.welcome-header h1 {
+    color: var(--text-light);
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-md);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    font-weight: bold;
+}
+
+.shinx-logo {
+    width: 150px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+    transition: transform var(--transition-speed);
+}
+
+.shinx-logo:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* ==================== MAIN CONTAINER ==================== */
+.auth-container {
+    width: 100%;
+    max-width: var(--input-width);
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* ==================== FORMS ==================== */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.form-input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid transparent;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.95);
+    transition: all var(--transition-speed);
+}
+
+.form-input::placeholder {
+    color: #999;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    background-color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 235, 59, 0.4);
+}
+
+.form-input:hover {
+    background-color: #ffffff;
+}
+
+/* ==================== BUTTONS ==================== */
+.btn {
+    padding: 15px 20px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn:focus {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 2px;
+}
+
+/* ==================== LINKS & TEXT ==================== */
+.auth-redirect {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 1rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    margin-top: var(--spacing-sm);
+}
+
+.auth-link {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: all var(--transition-speed);
+    border-bottom: 2px solid transparent;
+}
+
+.auth-link:hover {
+    color: #ffd700;
+    border-bottom-color: #ffd700;
+}
+
+.auth-link:focus {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+/* ==================== FLASH MESSAGES ==================== */
+.flash-messages {
+    width: 100%;
+    max-width: var(--input-width);
+    margin-bottom: var(--spacing-md);
+}
+
+.flash {
+    padding: 15px 20px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: var(--spacing-sm);
+    animation: slideInDown 0.4s ease-out;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.flash-error {
+    background-color: #f44336;
+    color: var(--text-light);
+}
+
+.flash-success {
+    background-color: #4caf50;
+    color: var(--text-light);
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 768px) {
+    :root {
+        --input-width: 90vw;
+    }
+    
+    .welcome-header h1 {
+        font-size: 2rem;
+    }
+    
+    .shinx-logo {
+        width: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .shinx-logo {
+        width: 100px;
+    }
+    
+    .form-input,
+    .btn {
+        font-size: 0.9rem;
+        padding: 12px 16px;
+    }
+    
+    .auth-redirect {
+        font-size: 0.9rem;
+    }
 }

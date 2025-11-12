@@ -1,24 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="static/css/auth.css">
-</head>
-<body style="background-image: url(static/images/background.jpg)">
-    <div id="welcome">
-        <h1>Welcome to Shinxity!</h1>
-        <img src="static/images/shinx.png" id="shinx" alt="shinx">
-    </div>
+{% extends "auth-base.html" %}
 
-    <form id="login_forms" action="#" method="post">
-        <input type="text" name="name" placeholder="Full name" required>
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="submit" id="login" value = "Login">
+{% block title %}Register - Shinxity{% endblock %}
+
+{% block content %}
+<header class="welcome-header">
+    <h1>Welcome to Shinxity!</h1>
+    <img src="{{ url_for('static', filename='images/shinx.png') }}"
+        class="shinx-logo"
+        alt="Shinx mascot - Electric-type Pokémon">
+</header>
+
+<main class="auth-container">
+    <form class="auth-form" action="{{ url_for('register') }}" method="post">
+        <input type="text"
+            name="name"
+            placeholder="Full Name"
+            class="form-input"
+            required
+            minlength="2"
+            autocomplete="name"
+            aria-label="Full Name">
+        
+        <input type="text"
+            name="username"
+            placeholder="Username"
+            class="form-input"
+            required
+            minlength="3"
+            autocomplete="username"
+            aria-label="Username">
+        
+        <input type="password"
+            name="password"
+            placeholder="Password"
+            class="form-input"
+            required
+            minlength="6"
+            autocomplete="new-password"
+            aria-label="Password">
+        
+        <button type="submit" class="btn btn-primary">Register</button>
     </form>
 
-    <h2 id ="register_text">Have an account? <a id= "register_link" href="/login">Login</a></h2>
-</body>
-</html>
+    <p class="auth-redirect">
+        Have an account? 
+        <a href="{{ url_for('login') }}" class="auth-link">Login</a>
+    </p>
+</main>
+{% endblock %}

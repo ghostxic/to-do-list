@@ -1,13 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title> Home Page</title>
-    </head>
-        <body>
-            <h1>Hello, {{username}}</h1>
-        </body>
-        <form action="/logout" method="post">
-        <p><input type="submit" value = "Logout"></p>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Shinxity</title>
+    <link rel="icon" type="image/png" href="{{url_for('static', filename='images/shinx.png')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+</head>
+<body>
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}" role="alert">
+                    {{ message }}
+                    </div>
+                {% endfor %}
+                </div>
+        {% endif %}
+    {% endwith %}
+    <header class="home-container">
+        <h1>Hello, {{ full_name }}! 👋</h1>
+        <p class="welcome-message">Welcome to your Shinxity To-Do List!</p>
+        
+        <form action="{{ url_for('logout') }}" method="post" class="logout-form">
+                <button type="submit" class="btn btn-logout">Logout</button>
         </form>
+    </header>
+    <section class="tabs">
+        <a id="today">Today</a>
+        <a id="past">Past</a>
+        <a id="future">Future</a>
+    </section>
+    <hr>
+    <main class="tasks">
+        <section class="ongoing">
 
+        </section>
+        <section class="complete">
+
+        </section>
+    </main>
+
+</body>
 </html>

@@ -1,24 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="static/css/auth.css">
-</head>
-<body style="background-image: url(static/images/background.jpg)">
+{% extends "auth-base.html" %}
 
-    <div id="welcome">
-        <h1>Welcome to Shinxity!</h1>
-        <img src="static/images/shinx.png" id="shinx" alt="shinx">
-    </div>
+{% block title %}Login - Shinxity{% endblock %}
 
-    <form id="login_forms" action="#" method="post">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="submit" id="login" value = "Login">
+{% block content %}
+
+<header class="welcome-header">
+    <h1>Welcome to Shinxity!</h1>
+    <img src="{{ url_for('static', filename='images/shinx.png') }}"
+        class="shinx-logo"
+        alt="Shinx mascot - Electric-type Pokémon">
+</header>
+
+<main class="auth-container">
+    <form class="auth-form" action="{{ url_for('login') }}" method="post">
+        <input type="text"
+            name="username"
+            placeholder="Username"
+            class="form-input"
+            required
+            minlength="3"
+            autocomplete="username"
+            aria-label="Username">
+
+        <input type="password"
+            name="password"
+            placeholder="Password"
+            class="form-input"
+            required
+            minlength="6"
+            autocomplete="current-password"
+            aria-label="Password">
+        
+        <button type="submit" class="btn btn-primary">Login</button>
     </form>
 
-    <h2 id ="register_text">No Account? <a id= "register_link" href="/register">Register</a></h2>
-</body>
-</html>
+    <p class="auth-redirect">
+        No Account? 
+        <a href="{{ url_for('register') }}" class="auth-link">Register</a>
+    </p>
+</main>
+{% endblock %}
