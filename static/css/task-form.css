@@ -1,0 +1,367 @@
+/* ==================== CSS RESET ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ==================== ROOT VARIABLES ==================== */
+:root {
+    --primary-color: #354F52;
+    --secondary-color: #52796F;
+    --accent-color: #84A98C;
+    --bg-light: #f5f5f5;
+    --text-dark: #333;
+    --text-light: #666;
+    --success-color: #4caf50;
+    --error-color: #f44336;
+    --border-radius: 12px;
+}
+
+/* ==================== BODY & LAYOUT ==================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    overflow: hidden;
+    margin: 0;
+    background: linear-gradient(135deg, #CAD2C5 0%, #84A98C 100%);
+}
+
+/* ==================== HEADER ==================== */
+.home-container {
+    height: 10vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2vw;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.home-container h1 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.home-container .welcome-message {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin: 0 2vw;
+}
+
+.logout-form {
+    margin: 0;
+}
+
+.btn-logout {
+    padding: 10px 20px;
+    background-color: var(--error-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+    background-color: #d32f2f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* ==================== TAB NAVIGATION ==================== */
+.tabs {
+    display: flex;
+    width: 100vw;
+    height: 12vh;
+    background: var(--primary-color);
+}
+
+.tabs a {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-right: 2px solid rgba(255,255,255,0.2);
+}
+
+.tabs a:last-child {
+    border-right: none;
+}
+
+.tabs a:hover {
+    background-color: var(--secondary-color);
+}
+
+/* ==================== ACTIVE TAB ==================== */
+.tabs a.active {
+    background-color: #2C3E40;
+    font-weight: bold;
+    border-bottom: 5px solid var(--accent-color);
+}
+
+/* ==================== TASK CONTAINER ==================== */
+.tasks {
+    width: 100vw;
+    height: 78vh;
+    overflow-y: auto;
+    padding: 30px 50px;
+    background-color: var(--bg-light);
+}
+
+/* ==================== TASK CONTROLS ==================== */
+.task-controls {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-new-task {
+    padding: 12px 24px;
+    background-color: var(--success-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-new-task:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* ==================== SECTIONS ==================== */
+.ongoing, .complete {
+    margin-bottom: 40px;
+}
+
+.section-header {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+/* ==================== TASK CARDS ==================== */
+.task-card {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.task-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+/* ==================== TASK CHECKBOX ==================== */
+.task-checkbox-form {
+    margin: 0;
+    margin-right: 20px;
+}
+
+.task-checkbox-btn {
+    font-size: 1.8rem;
+    background: none;
+    border: 2px solid var(--text-light);
+    border-radius: 6px;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-light);
+}
+
+.task-checkbox-btn:hover {
+    border-color: var(--success-color);
+    color: var(--success-color);
+    transform: scale(1.1);
+}
+
+/* ==================== TASK CONTENT ==================== */
+.task-content {
+    flex: 1;
+}
+
+.task-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+}
+
+.task-description {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    margin: 5px 0;
+}
+
+.task-date {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-style: italic;
+    margin-top: 5px;
+}
+
+/* ==================== TASK ACTIONS ==================== */
+.task-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.task-reorder-btn {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.task-reorder-btn:hover:not(:disabled) {
+    background-color: var(--secondary-color);
+    transform: scale(1.1);
+}
+
+.task-reorder-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.task-edit-btn {
+    padding: 8px 16px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.task-edit-btn:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+/* ==================== COMPLETED TASKS ==================== */
+.task-card.completed {
+    opacity: 0.7;
+    background-color: #f9f9f9;
+}
+
+.task-card.completed .task-title {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.task-card.completed .task-description {
+    color: #aaa;
+}
+
+.task-card.completed .task-checkbox-btn {
+    border-color: var(--success-color);
+    color: var(--success-color);
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+/* ==================== EMPTY STATE ==================== */
+.empty-state {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 1.2rem;
+    padding: 40px 20px;
+    font-style: italic;
+}
+
+/* ==================== FLASH MESSAGES ==================== */
+.flash-messages {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    max-width: 400px;
+}
+
+.flash {
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.3s ease-out;
+}
+
+.flash-success {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.flash-error {
+    background-color: var(--error-color);
+    color: white;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 768px) {
+    .home-container h1 {
+        font-size: 1.5rem;
+    }
+    
+    .home-container .welcome-message {
+        display: none;
+    }
+    
+    .tabs a {
+        font-size: 2rem;
+    }
+    
+    .tasks {
+        padding: 20px;
+    }
+    
+    .task-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .task-actions {
+        margin-left: 0;
+        margin-top: 10px;
+        width: 100%;
+        justify-content: flex-end;
+    }
+}

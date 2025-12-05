@@ -17,31 +17,105 @@
                     {{ message }}
                     </div>
                 {% endfor %}
-                </div>
+            </div>
         {% endif %}
     {% endwith %}
+    
     <header class="home-container">
         <h1>Hello, {{ full_name }}! 👋</h1>
         <p class="welcome-message">Welcome to your Shinxity To-Do List!</p>
         
         <form action="{{ url_for('logout') }}" method="post" class="logout-form">
-                <button type="submit" class="btn btn-logout">Logout</button>
+            <button type="submit" class="btn btn-logout">Logout</button>
         </form>
     </header>
+    
     <section class="tabs">
-        <a id="today">Today</a>
-        <a id="past">Past</a>
-        <a id="future">Future</a>
+        <a href="/home?tab=today"
+            class="{% if active_tab == 'today' %}active{% endif %}">Today</a>
+        
+        <a href="/home?tab=past"
+            class="{% if active_tab == 'past' %}active{% endif %}">Past</a>
+        
+        <a href="/home?tab=future"
+            class="{% if active_tab == 'future' %}active{% endif %}">Future</a>
     </section>
-    <hr>
+    
     <main class="tasks">
+        <!-- New Task Button -->
+        <div class="task-controls">
+            <a href="{{ url_for('new_task') }}" class="btn btn-new-task">+ New Task</a>
+        </div>
+        
+        <!-- ONGOING SECTION -->
+        {% if active_tab != 'past' %}
         <section class="ongoing">
-
+            <h2 class="section-header">Ongoing</h2>
+            
+            {% if ongoing_tasks %}
+                {% for task in ongoing_tasks %}
+                <div class="task-card">
+                    <form action="{{ url_for('toggle_complete', task_id=task.id) }}" method="post" class="task-checkbox-form">
+                        <input type="hidden" name="tab" value="{{ active_tab }}">
+                        <button type="submit" class="task-checkbox-btn">☐</button>
+                    </form>
+                    
+                    <div class="task-content">
+                        <h3 class="task-title">{{ task.title }}</h3>
+                        {% if task.description %}
+                        <p class="task-description">{{ task.description }}</p>
+                        {% endif %}
+                        <p class="task-date">Due: {{ task.due_date.strftime('%b %d, %Y') }}</p>
+                    </div>
+                    
+                    <div class="task-actions">
+                        <form action="{{ url_for('reorder_task', task_id=task.id) }}?direction=up" method="post" style="display: inline;">
+                            <input type="hidden" name="tab" value="{{ active_tab }}">
+                            <button type="submit" class="task-reorder-btn" {% if loop.first %}disabled{% endif %}>↑</button>
+                        </form>
+                        <form action="{{ url_for('reorder_task', task_id=task.id) }}?direction=down" method="post" style="display: inline;">
+                            <input type="hidden" name="tab" value="{{ active_tab }}">
+                            <button type="submit" class="task-reorder-btn" {% if loop.last %}disabled{% endif %}>↓</button>
+                        </form>
+                        <a href="{{ url_for('edit_task', task_id=task.id) }}" class="task-edit-btn">Edit</a>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="empty-state">No ongoing tasks! 🎉</p>
+            {% endif %}
         </section>
-        <section class="complete">
+        {% endif %}
 
+        <!-- COMPLETE SECTION -->
+        <section class="complete">
+            <h2 class="section-header">Complete</h2>
+            
+            {% if complete_tasks %}
+                {% for task in complete_tasks %}
+                <div class="task-card completed">
+                    <form action="{{ url_for('toggle_complete', task_id=task.id) }}" method="post" class="task-checkbox-form">
+                        <input type="hidden" name="tab" value="{{ active_tab }}">
+                        <button type="submit" class="task-checkbox-btn">☑</button>
+                    </form>
+                    
+                    <div class="task-content">
+                        <h3 class="task-title">{{ task.title }}</h3>
+                        {% if task.description %}
+                        <p class="task-description">{{ task.description }}</p>
+                        {% endif %}
+                        <p class="task-date">Completed: {{ task.completed_at.strftime('%b %d, %Y') if task.completed_at else 'N/A' }}</p>
+                    </div>
+                    
+                    <div class="task-actions">
+                        <a href="{{ url_for('edit_task', task_id=task.id) }}" class="task-edit-btn">Edit</a>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="empty-state">No completed tasks yet.</p>
+            {% endif %}
         </section>
     </main>
-
 </body>
 </html>
